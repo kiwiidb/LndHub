@@ -152,7 +152,7 @@ router.post('/create', postLimiter, async function (req, res) {
   let u = new User(redis, bitcoinclient, lightning);
   await u.create();
   await u.saveMetadata({ partnerid: req.body.partnerid, accounttype: req.body.accounttype, created_at: new Date().toISOString() });
-  res.send({ login: u.getLogin(), password: u.getPassword() });
+  res.send({ login: u.getLogin(), password: u.getPassword(), publicId: u.getPublicId() });
 });
 
 router.post('/auth', postLimiter, async function (req, res) {
@@ -184,7 +184,8 @@ router.get('/publicid', postLimiter, async function (req, res) {
   }
 
   logger.log('/publicid', [req.id, 'userid: ' + u.getUserId(), 'invoice: ' + req.body.invoice]);
-  res.send(await u.getPublicId());
+  let _publicId = await u.getPublicId();
+  res.send({publicId: _publicId});
 });
 
 router.post('/addinvoice', postLimiter, async function (req, res) {
