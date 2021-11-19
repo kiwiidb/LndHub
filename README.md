@@ -1,4 +1,4 @@
-Extra features compared to Bluewallet master:
+Extra features compared to Bluewallet master to implement LN Address functionality:
 
 - [Allow description_hash being passed to LND](https://github.com/BlueWallet/LndHub/pull/319/files)
 - [LNURL pay implementation](https://github.com/BlueWallet/LndHub/pull/291/files)
